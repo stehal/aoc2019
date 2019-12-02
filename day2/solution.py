@@ -1,18 +1,13 @@
 import unittest
 
 def parse(data):
-    strings = data.split(",")
-    result = []
-    for s in strings:
-        result.append(int(s))
-    return result
+    return list(map(int, data.split(","))) 
     
 def operate(ints, pos):
-    op = ints[pos]
-    val1 = ints[pos +1]
-    val2 = ints[pos +2]    
+    val1, val2 = ints[pos +1], ints[pos +2]    
     result_pos = ints[pos + 3]
    
+    op = ints[pos]
     if op == 1:
          ints[result_pos] = ints[val1] + ints[val2]
     if op == 2:
@@ -33,6 +28,7 @@ class TestFirst(unittest.TestCase):
 
     def test_parse(self):
         self.assertEqual( 1, parse(self.data)[0])
+        self.assertEqual( 50, parse(self.data)[11])
 
     def test_op(self):
         ints = parse(self.data)
@@ -61,6 +57,3 @@ for i in range(100):
         if doit(new_ints)[0] == 19690720:
             print("part 2", 100*i+j)
             break
-    
-    
-    
