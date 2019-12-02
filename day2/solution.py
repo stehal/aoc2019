@@ -48,25 +48,19 @@ if __name__ == '__main__':
     unittest.main()
 
 infile = "in.txt"
-
-with open(infile) as f:
-    data = f.read()
-    ints = parse(data)
-    ints[1]=12
-    ints[2] = 2
-    print("part 1",doit(ints)[0])
+data = open(infile).read()
+ints = parse(data)
+ints[1], ints[2] = 12, 2
+print("part 1",doit(ints)[0])
     
-with open(infile) as f:
-    data = f.read()                                            
-    ints = parse(data)
-    for i in range(100):
-        for j in range(100):
-            new_ints = list(ints)
-            new_ints[1]=i
-            new_ints[2] = j
-            if doit(new_ints)[0] == 19690720:
-                print("part 2", i, 100*i+j)
-                break
+ints = parse(data)
+for i in range(100):
+    for j in range(100):
+        new_ints = list(ints)
+        new_ints[1], new_ints[2] = i,j
+        if doit(new_ints)[0] == 19690720:
+            print("part 2", 100*i+j)
+            break
     
     
     
